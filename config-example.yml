@@ -1,0 +1,6 @@
+players:
+  Test: 1234567890
+webhooks:
+  Demo's Game:
+    webhook: "https://discord.com/api/webhooks/WEBHOOKURL"
+    type: Discord

@@ -20,12 +20,14 @@ def webhook():
 		gameConf = config['webhooks'][gameName]
 	except KeyError:
 		error = { 'error': 'Game ' + gameName + ' not found.'}
+		app.logger.error(error)
 		return error
 	playerName = req['value2']
 	try: 
 		playerId = config['players'][playerName]
 	except KeyError:
 		error = { 'error': 'Player ' + str(playerName) + ' not found.'}
+		app.logger.error(error)
 		return error
 	turnNumber = req['value3']
 	webhookUrl = gameConf['webhook']
@@ -35,6 +37,7 @@ def webhook():
 		hookreq = requests.post(webhookUrl, json=data)
 	else:
 		error = { "error": str(webhookType) + " is not a supported webhook type."}
+		app.logger.error(error)
 		return error
 	app.logger.info("New turn from " + gameName + ": Turn " + str(turnNumber) + ", Player " + playerName + " (ID: " + str(playerId) + ")")
 	app.logger.info("Response code from " + webhookType + ": " + str(hookreq.status_code))

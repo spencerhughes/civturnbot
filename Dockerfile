@@ -5,11 +5,11 @@ COPY requirements.txt /app/
 RUN pip install -U pip && \
 	pip install -r /app/requirements.txt
 
-COPY app.py /app/
-
 COPY start.sh /
 
 COPY config-example.yml /app/config/config.yml
+
+COPY app.py /app/
 
 WORKDIR /app
 

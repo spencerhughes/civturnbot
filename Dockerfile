@@ -17,4 +17,8 @@ EXPOSE 8080
 
 ENV LOGLEVEL="info"
 
+RUN useradd user
+
+USER user
+
 ENTRYPOINT ["bash", "/start.sh"]

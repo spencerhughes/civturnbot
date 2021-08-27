@@ -15,4 +15,6 @@ WORKDIR /app
 
 EXPOSE 8080
 
+ENV LOGLEVEL="info"
+
 ENTRYPOINT ["bash", "/start.sh"]

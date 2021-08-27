@@ -40,6 +40,10 @@ def webhook():
 	app.logger.info("Response code from " + webhookType + ": " + str(hookreq.status_code))
 	return ("", 200, None)
 
+@app.route('/health', methods=['GET'])
+def healthcheck():
+	return ("Healthy", 200, None)
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=8000, debug=True)
 else:

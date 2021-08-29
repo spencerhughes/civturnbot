@@ -5,8 +5,6 @@ COPY requirements.txt /app/
 RUN pip install -U pip && \
 	pip install -r /app/requirements.txt
 
-COPY start.sh /
-
 COPY config-example.yml /app/config/config.yml
 
 COPY app.py /app/
@@ -21,4 +19,4 @@ RUN useradd user
 
 USER user
 
-ENTRYPOINT ["bash", "/start.sh"]
+CMD ["gunicorn", "app:app", "--bind 0.0.0.0:8080", "--log-level=$LOGLEVEL", "--workers=4"]
